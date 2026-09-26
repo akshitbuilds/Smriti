@@ -1,4 +1,4 @@
-function App() {
+﻿function App() {
   return (
     <div className="app">
 
@@ -50,11 +50,11 @@ function App() {
           <h2>Recent Commitments</h2>
 
           <p>
-            <strong>Rohan</strong> — Poster
+            <strong>Rohan</strong> ΓÇö Poster
           </p>
 
           <p>
-            <strong>Akash</strong> — Sponsorship deck
+            <strong>Akash</strong> ΓÇö Sponsorship deck
           </p>
 
         </div>
