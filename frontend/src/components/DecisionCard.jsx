@@ -1,73 +1,38 @@
 import React from "react";
-import { Clock3, CheckCircle2 } from "lucide-react";
+import { GitBranch } from "lucide-react";
 
-export default function CommitmentCard({ commitment }) {
-  const person =
-    commitment.person ||
-    commitment.assignee ||
-    commitment.owner ||
-    commitment.name ||
-    "Unknown";
-
-  const task =
-    commitment.task ||
-    commitment.title ||
-    commitment.description ||
-    "Unnamed commitment";
-
-  const deadline =
-    commitment.deadline ||
-    commitment.due_date ||
-    commitment.due ||
-    "No deadline";
-
-  const status =
-    commitment.status ||
-    "PENDING";
-
-  const evidence =
-    commitment.evidence ||
-    commitment.message ||
-    commitment.quote ||
-    "";
-
-  const normalized = String(status).toUpperCase();
+export default function DecisionCard({ decision }) {
+  const topic = decision?.topic || "Decision";
+  const from = decision?.from || "Unknown";
+  const to = decision?.to || "Unknown";
+  const reason = decision?.reason || "";
+  const evidence = decision?.evidence || [];
 
   return (
     <div className="commitment-card">
       <div className="card-top">
-        <span
-          className={`status-badge ${
-            normalized === "COMPLETED"
-              ? "completed"
-              : normalized === "OVERDUE"
-              ? "overdue"
-              : "pending"
-          }`}
-        >
-          {normalized}
+        <span className="status-badge changed">
+          CHANGED
         </span>
       </div>
 
-      <h3>{task}</h3>
+      <h3>{topic}</h3>
 
       <p className="muted">
-        <strong>{person}</strong>
+        <strong>{from}</strong> → <strong>{to}</strong>
       </p>
 
-      <div className="detail-row">
-        <Clock3 size={16} />
-        <span>Deadline: {deadline}</span>
-      </div>
-
-      {evidence && (
-        <div className="mini-evidence">
-          "{evidence}"
+      {reason && (
+        <div className="detail-row">
+          <GitBranch size={16} />
+          <span>{reason}</span>
         </div>
       )}
 
-      {normalized === "COMPLETED" && (
-        <CheckCircle2 size={18} />
+      {evidence.length > 0 && (
+        <div className="mini-evidence">
+          "{evidence[0].quote}"
+        </div>
       )}
     </div>
   );
