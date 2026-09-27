@@ -1,4 +1,4 @@
-import React from "react";
+import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   MessageCircleQuestion,
@@ -11,56 +11,17 @@ import {
 } from "lucide-react";
 
 const items = [
-  {
-    id: "dashboard",
-    label: "Dashboard",
-    icon: LayoutDashboard,
-  },
-
-  {
-    id: "ask",
-    label: "Ask Smriti",
-    icon: MessageCircleQuestion,
-  },
-
-  {
-    id: "commitments",
-    label: "Commitments",
-    icon: ListChecks,
-  },
-
-  {
-    id: "decisions",
-    label: "Decisions",
-    icon: GitBranch,
-  },
-
-  {
-    id: "conflicts",
-    label: "Conflicts",
-    icon: AlertTriangle,
-  },
-
-  {
-    id: "weekly",
-    label: "Weekly Brief",
-    icon: FileText,
-  },
-
-  {
-    id: "actions",
-    label: "Actions",
-    icon: Zap,
-  },
-
-  {
-    id: "audit",
-    label: "Audit Log",
-    icon: ClipboardList,
-  },
+  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, path: "/" },
+  { id: "ask", label: "Ask Smriti", icon: MessageCircleQuestion, path: "/ask" },
+  { id: "commitments", label: "Commitments", icon: ListChecks, path: "/commitments" },
+  { id: "decisions", label: "Decisions", icon: GitBranch, path: "/decisions" },
+  { id: "conflicts", label: "Conflicts", icon: AlertTriangle, path: "/conflicts" },
+  { id: "weekly", label: "Weekly Brief", icon: FileText, path: "/weekly-brief" },
+  { id: "actions", label: "Actions", icon: Zap, path: "/actions" },
+  { id: "audit", label: "Audit Log", icon: ClipboardList, path: "/audit" },
 ];
 
-export default function Sidebar({ page, setPage }) {
+export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="brand">
@@ -77,16 +38,17 @@ export default function Sidebar({ page, setPage }) {
           const Icon = item.icon;
 
           return (
-            <button
+            <NavLink
               key={item.id}
-              className={`nav-item ${
-                page === item.id ? "active" : ""
-              }`}
-              onClick={() => setPage(item.id)}
+              to={item.path}
+              end={item.path === "/"}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
             >
               <Icon size={18} />
               <span>{item.label}</span>
-            </button>
+            </NavLink>
           );
         })}
       </nav>

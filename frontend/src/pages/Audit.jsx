@@ -16,7 +16,7 @@ export default function Audit() {
   useEffect(() => {
     getAudit()
       .then((response) => {
-        setItems(getArray(response.data));
+        setItems(getArray(response));
       })
       .finally(() => {
         setLoading(false);

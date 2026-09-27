@@ -16,7 +16,7 @@ export default function Decisions() {
   useEffect(() => {
     getDecisions()
       .then((response) => {
-        setItems(getArray(response.data));
+        setItems(getArray(response));
       })
       .finally(() => {
         setLoading(false);

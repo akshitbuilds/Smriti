@@ -17,7 +17,7 @@ export default function Commitments() {
   useEffect(() => {
     getCommitments()
       .then((response) => {
-        setItems(getArray(response.data));
+        setItems(getArray(response));
       })
       .catch(() => {
         setError("Could not load commitments.");

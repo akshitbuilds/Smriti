@@ -22,7 +22,7 @@ export default function Actions() {
   async function loadActions() {
     try {
       const response = await getPendingActions();
-      setItems(getArray(response.data));
+      setItems(getArray(response));
     } catch {
       setError("Could not load pending actions.");
     } finally {

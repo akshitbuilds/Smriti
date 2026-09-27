@@ -145,7 +145,9 @@ def detect_decision_changes():
         for message in venue_messages:
             text = message["text"].lower()
 
-            if "available" in text and "auditorium" in text:
+            if "auditorium" in text and (
+            "available" in text or "already booked" in text
+            ):
                 old_decision = "Auditorium"
 
             if "already booked" in text:

@@ -1,6 +1,4 @@
-const API_BASE =
-  "https://leonard-trypanosomic-keaton.ngrok-free.dev";
-
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8000";
 async function request(path, options = {}) {
   const separator = path.includes("?") ? "&" : "?";
 
@@ -118,6 +116,9 @@ export const getCommitments = () =>
 export const getDecisions = () =>
   api.decisions();
 
+export const getConflicts = () =>
+  api.conflicts();
+  
 export const getWeeklyBrief = () =>
   api.weeklyBrief();
 
